@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Inconsolata:pixelsize=22:antialias=true:autohint=true";
+static char *font = "Inconsolata For Powerline:pixelsize=22:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -80,45 +80,51 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
-
-/* bg opacity */
-float alpha = 0.4;
-const char *colorname[] = {
+unsigned int tabspaces = 3;
+/* Terminal colors (16 first used in escape sequence) */
+static const char *colorname[] = {
 
   /* 8 normal colors */
-  [0] = "#090909", /* black   */
-  [1] = "#AE500D", /* red     */
-  [2] = "#37A328", /* green   */
-  [3] = "#A6A326", /* yellow  */
-  [4] = "#D99909", /* blue    */
-  [5] = "#D6CB09", /* magenta */
-  [6] = "#2A5B97", /* cyan    */
-  [7] = "#83bdce", /* white   */
+  [0] = "#282828", /* black   */
+  [1] = "#cc241d", /* red     */
+  [2] = "#98971a", /* green   */
+  [3] = "#d79921", /* yellow  */
+  [4] = "#458588", /* blue    */
+  [5] = "#b16286", /* magenta */
+  [6] = "#689d6a", /* cyan    */
+  [7] = "#a89984", /* white   */
 
   /* 8 bright colors */
-  [8]  = "#5b8490",  /* black   */
-  [9]  = "#AE500D",  /* red     */
-  [10] = "#37A328", /* green   */
-  [11] = "#A6A326", /* yellow  */
-  [12] = "#D99909", /* blue    */
-  [13] = "#D6CB09", /* magenta */
-  [14] = "#2A5B97", /* cyan    */
-  [15] = "#83bdce", /* white   */
+  [8]  = "#928374", /* black   */
+  [9]  = "#fb4934", /* red     */
+  [10] = "#b8bb26", /* green   */
+  [11] = "#fabd2f", /* yellow  */
+  [12] = "#83a598", /* blue    */
+  [13] = "#d3869b", /* magenta */
+  [14] = "#8ec07c", /* cyan    */
+  [15] = "#ebdbb2", /* white   */
 
   /* special colors */
-  [256] = "#090909", /* background */
-  [257] = "#83bdce", /* foreground */
-  [258] = "#83bdce",     /* cursor */
+  [256] = "#282828", /* background */
+  [257] = "#ebdbb2", /* foreground */
 };
 
-/* Default colors (colorname index)
- * foreground, background, cursor */
- unsigned int defaultbg = 0;
- unsigned int defaultfg = 257;
- unsigned int defaultcs = 258;
- unsigned int defaultrcs= 258;
-
+/*
+ * Default colors (colorname index)
+ * foreground, background, cursor
+ */
+static unsigned int defaultfg = 257;
+static unsigned int defaultbg = 256;
+static unsigned int defaultcs = 257;
+unsigned int defaultrcs= 257;
+/*
+ * Colors used, when the specific fg == defaultfg. So in reverse mode this
+ * will reverse too. Another logic would only make the simple feature too
+ * complex.
+ */
+static unsigned int defaultitalic = 7;
+static unsigned int defaultunderline = 7;
+ 
 /*
  * Default shape of cursor
  * 2: Block ("█")
