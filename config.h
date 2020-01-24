@@ -1,5 +1,6 @@
-static char *font = "Inconsolata For Powerline:pixelsize=22:antialias=true:autohint=true";
-static int borderpx = 2;
+static char *font = "Inconsolata For Powerline:pixelsize=18:"
+                    "antialias=true:autohint=true";
+static int borderpx = 1;
 static char *shell = "/bin/sh";
 char *utmp = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
@@ -14,7 +15,7 @@ static unsigned int xfps = 120;
 static unsigned int actionfps = 30;
 static unsigned int blinktimeout = 0;
 static unsigned int cursorthickness = 2;
-static int bellvolume = 0;
+static int bellvolume = 100;
 char *termname = "st-256color";
 unsigned int tabspaces = 3;
 static const char *colorname[] = {
